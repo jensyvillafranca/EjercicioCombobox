@@ -41,7 +41,7 @@ public class ActivityCombo extends AppCompatActivity {
         //Conexión a la base de datos
         conexion = new SQLiteConexion(this, Transacciones.nambeBD, null, 1);
 
-        //Obteniendo el valor.
+        //Obteniendo el valor del combo
         combopersonas = (Spinner) findViewById(R.id.spinner);
 
         //Casteando los objetos
@@ -54,9 +54,12 @@ public class ActivityCombo extends AppCompatActivity {
         ArrayAdapter<CharSequence> adp = new ArrayAdapter(this, android.R.layout.simple_spinner_item,arreglopersonas);
         combopersonas.setAdapter(adp);
 
+        //Que al dar clic en un nombre del combobox se coloquen los datos
+        //LOS EVENTOS SE CARGAN EN EL METODO ONCRETAE
         combopersonas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //poniendo los datos del combobox en los texts plain.
                 nombres.setText(listapersonas.get(i).getNombres());
                 apellidos.setText(listapersonas.get(i).getApellidos());
                 correo.setText(listapersonas.get(i).getCorreo());

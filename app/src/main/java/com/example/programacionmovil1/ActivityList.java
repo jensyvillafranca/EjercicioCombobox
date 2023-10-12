@@ -53,11 +53,11 @@ public class ActivityList extends AppCompatActivity {
             lista.setAdapter(adp);
 
             //Podriamos seleccionar un elemento pero para ello necesitamos un evento, aquí se está creando ese evento
-            //Al hacer clic en un elemento de la lista, lo vamos a setear.
+            //Al hacer clic en un elemento de la lista, lo vamos a mostrar.
             lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //del arreglo de personas podemos obtener un elemento
+                    //del arreglo de personas podemos obtener la posición del empleado que seleccionemos
 
                     //obteniendo la posición del arreglo
                     String posicionPersona = listapersonas.get(i).getNombres();
@@ -118,8 +118,8 @@ public class ActivityList extends AppCompatActivity {
         for (int i = 0; i < listapersonas.size(); i++) {
             //Llenando el arreglo de tipo String "arreglopersonas" con lo que trae el arreglo que llenamos arriba.
             arreglopersonas.add(listapersonas.get(i).getId() + " - " +
-                                listapersonas.get(i).getNombres() + " - " +
-                                listapersonas.get(i).getApellidos());
+                    listapersonas.get(i).getNombres() + " - " +
+                    listapersonas.get(i).getApellidos());
         }
     }
 }
