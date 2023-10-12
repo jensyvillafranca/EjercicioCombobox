@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProgramacionMovil1</string>
+    <string name="nombre">Ingrese sus nombres</string>
+    <string name="apellidos">Ingrese sus apellidos</string>
+    <string name="btnagregar">Procesar</string>
+    <string name="correo">Ingrese su correo</string>
+    <string name="edad">Ingrese su edad</string>
+    <string name="Respuesta">Ingresado con exito</string>
+    <string name="Error">Error al conectar</string>
+</resources>
