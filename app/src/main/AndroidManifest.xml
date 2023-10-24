@@ -4,18 +4,20 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" />
-
-    <!---Esta es para la camara trasera-->
+        android:required="true" /> <!-- -Esta es para la camara trasera -->
     <uses-feature
         android:name="android.hardware.camera2"
-        android:required="true" />
-    <!--Dando permiso para usar la camara-->
+        android:required="true" /> <!-- Dando permiso para usar la camara -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <queries>
+
         <!-- Browser -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:scheme="http" />
         </intent>
 
@@ -41,6 +43,9 @@
         android:theme="@style/Theme.ProgramacionMovil1"
         tools:targetApi="31">
         <activity
+            android:name=".activity_speech"
+            android:exported="false" />
+        <activity
             android:name=".ActivityPhoto"
             android:exported="false" />
         <activity
@@ -61,6 +66,16 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.programacionmovil1.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
 
 </manifest>

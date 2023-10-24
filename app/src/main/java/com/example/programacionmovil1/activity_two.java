@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class activity_two extends AppCompatActivity {
-    Button btncreate, btnList, btnCombo;
+    Button btncreate, btnList, btnCombo, btnvoz, btnTomarFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,43 +19,51 @@ public class activity_two extends AppCompatActivity {
         btncreate = (Button)findViewById(R.id.btnCrear);
         btnList = (Button)findViewById(R.id.btnLista);
         btnCombo = (Button)findViewById(R.id.btnCombo);
+        btnvoz = (Button)findViewById(R.id.btnVoz);
+        btnTomarFoto = (Button)findViewById(R.id.btnFotoTake);
 
-        /*Creando el evento de escucha del boton Crear Empleado*/
-        btncreate.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener butonclick = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intCrear = new Intent(getApplicationContext(), MainActivity.class);
-                /*En la linea anterior por medio del objeto intCrear mandamos a llamar la actividad que deseamos mostrar*/
+                Class<?> actividad = null;
 
-                /*intCrear.putExtra("Numero1",10); /*Para mandar los datos a la otra actividad
-                intCrear.putExtra("Numero2",20);*/
+                if (view.getId() == R.id.btnCrear) {
+                    actividad = MainActivity.class;
+                }
+                else if (view.getId() == R.id.btnLista) {
+                    actividad = ActivityList.class;
+                }
+                else if (view.getId() == R.id.btnCombo) {
+                    actividad = ActivityCombo.class;
+                }
+                else if (view.getId() == R.id.btnFotoTake) {
+                    actividad = ActivityPhoto.class;
+                }
+                else if (view.getId() == R.id.btnVoz) {
+                    actividad = activity_speech.class;
+                }
 
-
-                startActivity(intCrear); /*Iniciar la actividad*/
-
+                if(actividad != null){
+                    MoveActivity (actividad);
+                }
             }
-        });
+        };
+        /*Creando el evento de escucha del boton Crear Empleado*/
+        btncreate.setOnClickListener(butonclick);
 
         /*Creando el boton de escucha del boton de listar empleados*/
-        btnList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Mandando a llamar la actividad: ActivityList
-                Intent intCrear = new Intent(getApplicationContext(), ActivityList.class);
-                startActivity(intCrear);
+        btnList.setOnClickListener(butonclick);
 
-            }
-        });
+        /*Creando el boton de escucha del boton mostrar un combobox*/
+        btnCombo.setOnClickListener(butonclick);
 
-        btnCombo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Mandando a llamar la actividad: ActivityList
-                Intent intCrear = new Intent(getApplicationContext(), ActivityCombo.class);
-                startActivity(intCrear);
-            }
-        });
+        btnvoz.setOnClickListener(butonclick);
 
+        btnTomarFoto.setOnClickListener(butonclick);
+    }
 
+    private void MoveActivity(Class<?>actividad) {
+        Intent intent = new Intent(getApplicationContext(), actividad);
+        startActivity(intent);
     }
 }
